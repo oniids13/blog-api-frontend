@@ -3,6 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import MainContent from './MainContent'
 import ErrorPage from '../views/ErrorPage'
 import Index from '../views/Index'
+import SignUp from '../views/SignupPage'
 
 
 const router = createBrowserRouter(
@@ -13,7 +14,7 @@ const router = createBrowserRouter(
         errorElement={<ErrorPage/>}
         >
             <Route index element={<Index />} />
-
+            <Route path='signup' element={<SignUp />} />
         </Route>
     )
 )
