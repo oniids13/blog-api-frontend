@@ -29,11 +29,7 @@ const Login = () => {
             });
 
             console.log(response)
-            const data = await response.JSON();
 
-            if (!response.ok) {
-                throw new Error(data.error || "Login failed");
-            }
 
 
             localStorage.setItem("token", response.data.token);
@@ -55,11 +51,11 @@ const Login = () => {
             {error && <p className='text-danger'>{error}</p>}
 
             <div className="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required onChange={handleChange} />
+            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" required onChange={handleChange} />
             <label htmlFor="floatingInput">Email address</label>
             </div>
             <div className="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required onChange={handleChange} />
+            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name="password" required onChange={handleChange} />
             <label htmlFor="floatingPassword">Password</label>
             </div>
             <button className="btn btn-primary w-100 py-2" type="submit">Sign in</button>
