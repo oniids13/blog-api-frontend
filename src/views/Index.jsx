@@ -1,11 +1,14 @@
-
+import { useOutletContext } from "react-router-dom"
 import Login from "../component/Login.jsx"
 
 const Index = () => {
+
+    const {setToken} = useOutletContext();
+
     return (
         <>
         <div className="wrapper">
-            <Login />
+            <Login setToken={setToken} />
         </div>
         </>
     )

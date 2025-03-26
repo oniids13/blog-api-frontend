@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom'
+import Logout from './LogoutBtn'
 
 
-const Header = () => {
+const Header = ({token, setToken}) => {
+
     return (
         <header>
-            <Link to={'/'}>
+            <div>
                 <h1>Blog Book</h1>
-            </Link>
+                <small>Blogging with passion</small>
+            </div>
             <nav>
-
-                    <Link to={'/signup'}>
-                        <button className='btn btn-success'>Sign Up</button>
-                    </Link>
-
+                    {!token ? (
+                        <Link to={'/signup'}>
+                            <button className='btn btn-success'>Sign Up</button>
+                        </Link>
+                    ) : (
+                        <Logout setToken={setToken} />
+                    )}
+                   
             </nav>
         </header>
     )

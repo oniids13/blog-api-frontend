@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({setToken}) => {
 
     const navigate = useNavigate();
     const [error, setError] = useState("")
@@ -33,9 +33,11 @@ const Login = () => {
 
 
             localStorage.setItem("token", response.data.token);
-            const token = localStorage.getItem("token");
-            console.log(token);
-            // navigate("/home");
+            localStorage.setItem("userId", response.data.id);
+
+            setToken(response.data.token)
+           
+            navigate("/home");
         } catch (error) {
             console.error(error.message)
             setError("Invalid Login Credentials");

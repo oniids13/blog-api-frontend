@@ -57,3 +57,9 @@ footer {
 .signup-form {
   text-align: center;
 }
+
+.comment {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}

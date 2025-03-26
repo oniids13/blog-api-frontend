@@ -4,7 +4,7 @@ import MainContent from './MainContent'
 import ErrorPage from '../views/ErrorPage'
 import Index from '../views/Index'
 import SignUp from '../views/SignupPage'
-
+import Home from '../views/HomePage'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,6 +15,7 @@ const router = createBrowserRouter(
         >
             <Route index element={<Index />} />
             <Route path='signup' element={<SignUp />} />
+            <Route path='home' element={<Home />} />
         </Route>
     )
 )
