@@ -28,11 +28,14 @@ const CommentForm = ({postId}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="content" placeholder="Add Comment" value={comment} onChange={(e) => setComment(e.target.value)} required />
-            <br />
-            <button type="submit" className="btn btn-sm btn-success">Add Comment</button>
-        </form>
+        <div className="my-3">
+            <form onSubmit={handleSubmit}>
+                <div className="form-floating mb-3">
+                    <input type="text" name="content" value={comment} onChange={(e) => setComment(e.target.value)} className="form-control" id="floatingInput" required/>
+                    <label htmlFor="floatingInput">Add Comment</label>
+                </div>
+            </form>
+        </div>
     )
 }
 

@@ -29,9 +29,8 @@ body {
 footer {
   text-align: center;
   padding: 10px;
-  height: 15px;
+  max-height: 10px;
   font-weight: 700;
-  border-top: 1px solid black;
 }
 
 .login-form {
@@ -58,8 +57,28 @@ footer {
   text-align: center;
 }
 
-.comment {
-  border: 1px solid black;
+.post {
+  border: 1px solid #9ACBD0;
+  max-width: 40%;
   border-radius: 10px;
   padding: 10px;
+}
+
+
+.posts-list {
+  border-left: 1px solid black;
+  min-width: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.comment {
+  border: 1px solid #F1E7E7;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.comment-date {
+  font-size: 10px;
 }

@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import CommentForm from "../component/CommentForm"
-import DeleteButton from "../component/DeleteButton"
+import Post from "../component/Posts"
 
 
 const Home = () => {
@@ -14,6 +13,7 @@ const Home = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [comments, setComments] = useState(posts.comment)
 
     useEffect(() => {
 
@@ -38,7 +38,6 @@ const Home = () => {
                     setAdminUsers(userResponse.data.adminUsers)
                     setBasicUsers(userResponse.data.basicUsers)
                     setPosts(postsResponse.data.publishedPosts)
-                    console.log(userResponse.data, postsResponse.data.publishedPosts)
                 }
             } catch (err) {
                 if (isMounted) {
@@ -62,7 +61,7 @@ const Home = () => {
     console.log(userId)
     return (
         <>
-        <div className="posts row">
+        <div className="row p-3">
             <div className="col-3 user-list">
                 <h4>Admin Users </h4>
                 <ul>
@@ -79,34 +78,7 @@ const Home = () => {
             </div>
             <div className="col-9 posts-list">
                 {posts.map((post) => (
-                    <div key={post.id} className="card" style={{width: 50 + 'rem'}}>
-                    <div className="card-body">
-                      <h5 className="card-title">{post.title}</h5>
-                      <h6 className="card-subtitle mb-2 text-body-secondary">@{post.author.username}</h6>
-                      <small className="card-text">{post.createdAt.slice(0, 10)}</small>
-                      <p className="card-text">{post.content}</p>
-                      <hr />
-                      <h6>Comments</h6>
-                      {post.comments?.length > 0 ? (
-                        post.comments.map((comment) => (
-                            <div key={comment.id} className="comment">
-                                <small>@{comment.author?.username}</small>
-                                <br />
-                                <small>{comment.createdAt.slice(0, 10)}</small>
-                                <p>{comment.content}</p>
-                                {userId === comment.author.id ? (
-                                    <DeleteButton commentID={comment.id} />
-                                ): null}
-                            </div>
-                        ))
-                        ) : (
-                        <p>No comments yet</p>
-                        )}
-                        <div>
-                           <CommentForm postId={post.id} />
-                        </div>
-                    </div>
-                  </div>
+                    <Post key={post.id} post={post} />
                 ))}
             </div>
         </div>

@@ -33,8 +33,8 @@ const Login = ({setToken}) => {
 
 
             localStorage.setItem("token", response.data.token);
-            localStorage.setItem("userId", response.data.id);
-
+            localStorage.setItem("userId", response.data.userId);
+            console.log(localStorage.getItem("userId"))
             setToken(response.data.token)
            
             navigate("/home");
