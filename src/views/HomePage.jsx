@@ -7,6 +7,8 @@ const Home = () => {
 
     const token = localStorage.getItem("token")
     const userId = localStorage.getItem("userId")
+    const name = localStorage.getItem("name")
+    const username = localStorage.getItem("username")
 
     const [adminUsers, setAdminUsers] = useState([]);
     const [basicUsers, setBasicUsers] = useState([]);
@@ -63,13 +65,15 @@ const Home = () => {
         <>
         <div className="row p-3">
             <div className="col-3 user-list">
-                <h4>Admin Users </h4>
+                <h2>Hello! {name}</h2>
+                <h4>@{username}</h4>
+                <h4 className="border-top">Admin Users </h4>
                 <ul>
                     {adminUsers.map((user) => (
                         <li key={user.id}>@{user.username}</li>
                     ))}
                 </ul>
-                <h4>Users</h4>
+                <h4 className="border-top">Users</h4>
                 <ul>
                     {basicUsers.map((user) => (
                         <li key={user.id}>@{user.username}</li>
