@@ -16,7 +16,12 @@ const Header = ({token, setToken}) => {
                             <button className='btn btn-success'>Sign Up</button>
                         </Link>
                     ) : (
-                        <Logout setToken={setToken} />
+                        <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                            <Link to={'/home'}>
+                                <button className='btn btn-primary'>Home</button>
+                            </Link>
+                            <Logout setToken={setToken} />
+                        </div>
                     )}
                    
             </nav>

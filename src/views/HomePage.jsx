@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import Post from "../component/Posts"
-
+import AddPostForm from "../component/AddPostForm"
 
 const Home = () => {
 
@@ -60,30 +60,40 @@ const Home = () => {
         }
     }, [])
 
-    console.log(userId)
+  
     return (
         <>
-        <div className="row p-3">
+        <div className="row p-3 home">
             <div className="col-3 user-list">
-                <h2>Hello! {name}</h2>
-                <h4>@{username}</h4>
-                <h4 className="border-top">Admin Users </h4>
-                <ul>
-                    {adminUsers.map((user) => (
-                        <li key={user.id}>@{user.username}</li>
-                    ))}
-                </ul>
-                <h4 className="border-top">Users</h4>
-                <ul>
-                    {basicUsers.map((user) => (
-                        <li key={user.id}>@{user.username}</li>
-                    ))}
-                </ul>
+                <div className="my-3">
+                    <h2>Hello! {name}</h2>
+                    <h4 className="text-warning-emphasis">@{username}</h4>
+                </div>
+                <div className="mt-5">
+                    <h4 className="border-top">Admin Users </h4>
+                    <ul>
+                        {adminUsers.map((user) => (
+                            <li key={user.id}>@{user.username}</li>
+                        ))}
+                    </ul>
+                    <h4 className="border-top">Users</h4>
+                    <ul>
+                        {basicUsers.map((user) => (
+                            <li key={user.id}>@{user.username}</li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div className="col-9 posts-list">
-                {posts.map((post) => (
-                    <Post key={post.id} post={post} />
-                ))}
+            <div className="col-9 posts-panel">
+                <div className="row">
+                    <AddPostForm  token={token}/>
+                </div>
+                <div className="row posts-list border-top mt-5">
+                    <h2 className="text-center">Blog Posts</h2>
+                    {posts.map((post) => (
+                        <Post key={post.id} post={post} />
+                    ))}
+                </div>
             </div>
         </div>
   

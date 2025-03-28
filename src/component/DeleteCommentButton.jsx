@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 
-const DeleteButton = ({commentID}) => {
+const DeleteCommentButton = ({commentID}) => {
 
 
 
@@ -33,4 +33,4 @@ const DeleteButton = ({commentID}) => {
     )
 }
 
-export default DeleteButton
+export default DeleteCommentButton

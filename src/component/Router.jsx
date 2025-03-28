@@ -5,7 +5,7 @@ import ErrorPage from '../views/ErrorPage'
 import Index from '../views/Index'
 import SignUp from '../views/SignupPage'
 import Home from '../views/HomePage'
-
+import EditPost from "../views/EditPost"
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route
@@ -16,6 +16,7 @@ const router = createBrowserRouter(
             <Route index element={<Index />} />
             <Route path='signup' element={<SignUp />} />
             <Route path='home' element={<Home />} />
+            <Route path='edit/:postId' element={<EditPost />} />
         </Route>
     )
 )
