@@ -2,20 +2,19 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import Post from "../component/Posts"
 import AddPostForm from "../component/AddPostForm"
+import AdminButton from "../component/AdminButton"
 
 const Home = () => {
 
-    const token = localStorage.getItem("token")
-    const userId = localStorage.getItem("userId")
-    const name = localStorage.getItem("name")
-    const username = localStorage.getItem("username")
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
 
     const [adminUsers, setAdminUsers] = useState([]);
     const [basicUsers, setBasicUsers] = useState([]);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const [comments, setComments] = useState(posts.comment)
+
 
     useEffect(() => {
 
@@ -25,13 +24,13 @@ const Home = () => {
                 const [userResponse, postsResponse] = await Promise.all([
                     axios.get("http://localhost:3000/user/all", {
                         headers: {
-                            Authorization: `Bearer ${token}`,
+                            Authorization: `Bearer ${userData.token}`,
                             "Content-Type": "application/json"
                         }
                     }),
                     axios.get("http://localhost:3000/posts", {
                         headers: {
-                            Authorization: `Bearer ${token}`,
+                            Authorization: `Bearer ${userData.token}`,
                             "Content-Type": "application/json"
                         }
                     })
@@ -66,8 +65,11 @@ const Home = () => {
         <div className="row p-3 home">
             <div className="col-3 user-list">
                 <div className="my-3">
-                    <h2>Hello! {name}</h2>
-                    <h4 className="text-warning-emphasis">@{username}</h4>
+                    <h2>Hello! {userData.name}</h2>
+                    <h4 className="text-warning-emphasis">@{userData.username}</h4>
+                </div>
+                <div>
+                    <AdminButton/>
                 </div>
                 <div className="mt-5">
                     <h4 className="border-top">Admin Users </h4>
@@ -86,7 +88,7 @@ const Home = () => {
             </div>
             <div className="col-9 posts-panel">
                 <div className="row">
-                    <AddPostForm  token={token}/>
+                    <AddPostForm  token={userData.token}/>
                 </div>
                 <div className="row posts-list border-top mt-5">
                     <h2 className="text-center">Blog Posts</h2>

@@ -3,8 +3,10 @@ import axios from 'axios'
 
 
 
+
 const AddPostForm = ({token}) => {
 
+    const [alertMessage, setAlertMessage] = useState("");
     const [formData, setFormData] = useState({
             title: "",
             content: "",
@@ -26,14 +28,20 @@ const AddPostForm = ({token}) => {
                         "Content-Type": "application/json"
                     }
                 })   
-            } catch (err) {
+
+                setAlertMessage("Post is pending for approval!");
+            }  catch (err) {
+                setAlertMessage("Error adding post.");
                 console.error("Error updating post:", err)
-            }
+        }
         }
 
 
     return (
         <>
+        {alertMessage && (
+                <div className="alert alert-info">{alertMessage}</div> 
+            )}
         <form onSubmit={handleSubmit}>
                  <div className="form-floating mb-3">
                     <input value={formData.title} onChange={handleChange} type="text" name="title" className="form-control add-post-input" id="floatingInput" required/>

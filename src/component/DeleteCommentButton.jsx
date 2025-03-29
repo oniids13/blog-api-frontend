@@ -7,11 +7,11 @@ const DeleteCommentButton = ({commentID}) => {
 
 
     const handleSubmit = async () => {
-        const token = localStorage.getItem("token")
+        const userData = JSON.parse(localStorage.getItem("userData"))
         try {
             await axios.delete(`http://localhost:3000/posts/comment/${commentID}/delete`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${userData.token}`,
                     "Content-Type": "application/json"
                 }
             })

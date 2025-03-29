@@ -7,7 +7,7 @@ const Comment = ({ comment, onUpdate, userId}) => {
 
     const [isEditing, setIsEditing] = useState(false)
     const [newContent, setNewContent] = useState(comment.content);
-    const token = localStorage.getItem("token");
+    const userData = JSON.parse(localStorage.getItem("userData"))
 
     const handleEdit = () => {
         setIsEditing(true)
@@ -23,7 +23,7 @@ const Comment = ({ comment, onUpdate, userId}) => {
                     {content: newContent},
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`,
+                            Authorization: `Bearer ${userData.token}`,
                             "Content-Type": "application/json",
                         },
                     }

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 const EditPost = () => {
     const {postId} = useParams()
-    const token = localStorage.getItem("token")
+    const userData = JSON.parse(localStorage.getItem("userData"))
     const [singlePost, setSinglePost] = useState()
 
 
@@ -15,7 +15,7 @@ const EditPost = () => {
             try {
                 const response = await axios.get(`http://localhost:3000/posts/${postId}`, {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${userData.token}`,
                         "Content-Type": "application/json"
                     }
                 })
@@ -32,7 +32,7 @@ const EditPost = () => {
     if (!singlePost) return <p>Loading post...</p>;
 
     return (
-        <EditPostForm post={singlePost} token={token} />
+        <EditPostForm post={singlePost} token={userData.token} />
     )
 }
 
@@ -44,7 +44,8 @@ const EditPost = () => {
 
 const EditPostForm = ({post, token}) => {
 
-    const authorId = localStorage.getItem("userId")
+    const userData = JSON.parse(localStorage.getItem("userData"))
+    const authorId = userData.userId
     const navigate = useNavigate()
 
 

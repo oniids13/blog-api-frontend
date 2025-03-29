@@ -6,6 +6,10 @@ import Index from '../views/Index'
 import SignUp from '../views/SignupPage'
 import Home from '../views/HomePage'
 import EditPost from "../views/EditPost"
+import AdminRoute from './AdminRoute'
+import AdminPage from '../views/AdminPage'
+import UnauthorizedPage from '../views/UnauthorizedPage'
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route
@@ -17,6 +21,12 @@ const router = createBrowserRouter(
             <Route path='signup' element={<SignUp />} />
             <Route path='home' element={<Home />} />
             <Route path='edit/:postId' element={<EditPost />} />
+
+            <Route element={<AdminRoute/>}>
+                <Route path='admin' element ={<AdminPage />} />
+            </Route>
+
+            <Route path='unauthorized' element={<UnauthorizedPage/>} />
         </Route>
     )
 )

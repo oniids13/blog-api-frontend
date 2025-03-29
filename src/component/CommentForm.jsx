@@ -8,14 +8,14 @@ const CommentForm = ({postId}) => {
     const handleSubmit = async () => {
 
         try {
-            const token = localStorage.getItem("token")
+            const userData = JSON.parse(localStorage.getItem("userData"))
 
             const response = await axios.post(
                 `http://localhost:3000/posts/${postId}/comment`,
                 { content: comment},
                 {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${userData.token}`,
                         "Content-Type": "application/json",
                     },
                 }

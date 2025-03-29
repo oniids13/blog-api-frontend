@@ -6,7 +6,9 @@ import { useEffect, useState } from "react"
 
 const MainContent = () => {
 
-    const [token, setToken] = useState(localStorage.getItem("token"))
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    const [token, setToken] = useState(userData.token)
 
     useEffect(() => {
         const updateToken = () => setToken(localStorage.getItem("token"))

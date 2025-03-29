@@ -8,7 +8,7 @@ const Logout = ({setToken}) => {
         try {
             await axios.post('http://localhost:3000/logout')
 
-            localStorage.removeItem("token");
+            localStorage.removeItem("userId");
             setToken(null)
 
             navigate("/")

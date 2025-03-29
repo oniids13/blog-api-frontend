@@ -4,11 +4,11 @@ import axios from "axios"
 const DeletePostButton = ({postId}) => {
 
     const handleSubmit = async () => {
-        const token = localStorage.getItem("token")
+        const userData = JSON.parse(localStorage.getItem("userData"))
         try {
             await axios.delete(`http://localhost:3000/posts/${postId}/delete`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${userData.token}`,
                     "Content-Type": "application/json"
                 }
             })

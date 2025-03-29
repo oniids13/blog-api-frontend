@@ -6,7 +6,7 @@ import EditPostButton from "./EditPostButton"
 
 const Post = ({post}) => {
     const [comments, setComments] = useState(post.comments)
-    const userId = localStorage.getItem("userId")
+    const userData = JSON.parse(localStorage.getItem("userData"))
 
     const handleUpdateComment = (commentId, newContent) => {
         setComments((prevComments) => 
@@ -20,7 +20,7 @@ const Post = ({post}) => {
         <div className="card-body post">
             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
                 <h4 className="card-title">{post.title}</h4>
-                {userId === post.author.id &&
+                {userData.userId === post.author.id &&
                     <>
                     <EditPostButton postId={post.id} />
                     <DeletePostButton postId={post.id} />
@@ -35,7 +35,7 @@ const Post = ({post}) => {
             <h6>Comments</h6>
             {comments?.length > 0 ? (
                 comments.map((comment) => (
-                <Comment key={comment.id} comment={comment} onUpdate={handleUpdateComment} userId={userId} />
+                <Comment key={comment.id} comment={comment} onUpdate={handleUpdateComment} userId={userData.userId} />
             ))
             ) : (
             <p>No comments yet</p>

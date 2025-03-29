@@ -28,14 +28,19 @@ const Login = ({setToken}) => {
                 headers: {"Content-Type": "application/json"}
             });
 
-            console.log(response)
 
+            const userData = {
+                token: response.data.token,
+                userId: response.data.userId,
+                name: response.data.name,
+                username: response.data.username,
+                role: response.data.role,
+            }
 
+            localStorage.setItem("userData", JSON.stringify(userData))
+    
 
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("userId", response.data.userId);
-            localStorage.setItem("name", response.data.name);
-            localStorage.setItem("username", response.data.username);
+           
             setToken(response.data.token)
            
             navigate("/home");
