@@ -1,26 +1,26 @@
 import axios from "axios"
 
 
-const DeletePostButton = ({postId}) => {
+const DeleteUserButton = ({userId}) => {
 
-    const handleSubmit = async ( ) => {
+    const userData = JSON.parse(localStorage.getItem("userData"))
 
-   
-        const userData = JSON.parse(localStorage.getItem("userData"))
+    const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:3000/posts/${postId}/delete`, {
+            await axios.delete(`http://localhost:3000/user/${userId}/delete`, {
                 headers: {
                     Authorization: `Bearer ${userData.token}`,
                     "Content-Type": "application/json"
                 }
             })
         } catch (err) {
-            console.error("Failed deleting Post: ", err)
+            console.error('Failed to delete user: ', err)
         }
+        
     }
 
     return (
-        <form action="/home" method="get" onSubmit={handleSubmit}>
+        <form onSubmit={handleDelete} action='/admin'>
             <button className="btn btn-sm btn-danger" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
@@ -31,5 +31,4 @@ const DeletePostButton = ({postId}) => {
     )
 }
 
-
-export default DeletePostButton
+export default DeleteUserButton

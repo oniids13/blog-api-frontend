@@ -96,6 +96,12 @@ footer {
  height: 100vh;
 }
 
+.admin-page {
+  flex: 1;
+  min-height: 100vh;
+  padding: 20px;
+}
+
 .user-list {
   width: 25%;
   position: sticky;

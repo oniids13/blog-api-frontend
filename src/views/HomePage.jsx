@@ -72,7 +72,7 @@ const Home = () => {
                     <AdminButton/>
                 </div>
                 <div className="mt-5">
-                    <h4 className="border-top">Admin Users </h4>
+                    <h4 className="border-top">Admin</h4>
                     <ul>
                         {adminUsers.map((user) => (
                             <li key={user.id}>@{user.username}</li>
@@ -88,6 +88,7 @@ const Home = () => {
             </div>
             <div className="col-9 posts-panel">
                 <div className="row">
+                    <h3>Publish what's on your mind!</h3>
                     <AddPostForm  token={userData.token}/>
                 </div>
                 <div className="row posts-list border-top mt-5">
